@@ -1,4 +1,3 @@
-import streams from '../apis/streams';
 import api from '../apis/auth';
 import history from '../history';
 import {
@@ -87,15 +86,15 @@ export const fetchStream = postId => async dispatch => {
   dispatch({ type: FETCH_STREAM, payload: response.data.post });
 };
 
-export const editStream = (id, formValues) => async dispatch => {
-  const response = await streams.patch(`/streams/${id}`, formValues);
+export const editStream = (postId, userId, formValues) => async dispatch => {
+  const response = await api.put(`/feed/post/${postId}/${userId}`, formValues);
 
-  dispatch({ type: EDIT_STREAM, payload: response.data });
+  dispatch({ type: EDIT_STREAM, payload: response.data.post });
   history.push('/');
 };
 
 export const deleteStream = (postId, userId) => async dispatch => {
-  await streams.delete(`/feed/post/${postId}/${userId}`);
+  await api.delete(`/feed/post/${postId}/${userId}`);
 
   dispatch({ type: DELETE_STREAM, payload: postId });
   history.push('/');

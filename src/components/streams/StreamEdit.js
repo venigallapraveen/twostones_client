@@ -10,7 +10,8 @@ class StreamEdit extends React.Component {
   }
 
   onSubmit = formValues => {
-    this.props.editStream(this.props.match.params.id, formValues);
+    //sending post id, user id and form values to post edit action  creator
+    this.props.editStream(this.props.match.params.id, this.props.userID, formValues);
   };
 
   render() {
@@ -20,9 +21,9 @@ class StreamEdit extends React.Component {
 
     return (
       <div>
-        <h3>Edit a Stream</h3>
+        <h3>Edit a Post</h3>
         <StreamForm
-          initialValues={_.pick(this.props.stream, 'title', 'description')}
+          initialValues={_.pick(this.props.stream, 'title', 'content')}
           onSubmit={this.onSubmit}
         />
       </div>
@@ -31,7 +32,8 @@ class StreamEdit extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return { stream: state.streams[ownProps.match.params.id] };
+  return { stream: state.streams[ownProps.match.params.id],
+  userID: state.auth.userId};
 };
 
 export default connect(
