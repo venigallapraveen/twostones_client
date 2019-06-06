@@ -67,8 +67,9 @@ export const signOut = () => async (dispatch) => {
 
 export const createStream = formValues => async (dispatch, getState) => {
   const { userId } = getState().auth;
+  const {username} = getState().auth;
   console.log('user id', userId);
-  const response = await api.post(`/feed/post/${userId}`, formValues);
+  const response = await api.post(`/feed/post/${userId}/${username}`, formValues);
 
   dispatch({ type: CREATE_STREAM, payload: response.data.post });
   history.push('/');
