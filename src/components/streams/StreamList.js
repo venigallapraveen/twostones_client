@@ -8,6 +8,11 @@ class StreamList extends React.Component {
     this.props.fetchStreams();
   }
 
+  // module to show search bar
+    searchModulev1(){
+      console.log('search module v1');
+    }
+
   renderAdmin(stream) {
     if (stream.creator === this.props.currentUserId) {
       return (
