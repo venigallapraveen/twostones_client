@@ -9,8 +9,8 @@ class StreamList extends React.Component {
   }
 
   // module to show search bar
-    searchModule(){
-      console.log('search module');
+    searchModulev1(){
+      console.log('search module v1');
     }
 
   renderAdmin(stream) {
