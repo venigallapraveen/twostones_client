@@ -53,7 +53,7 @@ class StreamDelete extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return { stream: state.streams[ownProps.match.params.id],
-  userID: state.userId};
+  userID: state.auth.userId};
 };
 
 export default connect(
