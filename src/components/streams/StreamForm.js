@@ -35,9 +35,14 @@ class StreamForm extends React.Component {
       >
         <Field name="title" component={this.renderInput} label="Enter Title" />
         <Field
-          name="description"
+          name="content"
           component={this.renderInput}
-          label="Enter Description"
+          label="Enter content"
+        />
+        <Field
+            name="image"
+            component={this.renderInput}
+            label="Enter image"
         />
         <button className="ui button primary">Submit</button>
       </form>
@@ -52,8 +57,8 @@ const validate = formValues => {
     errors.title = 'You must enter a title';
   }
 
-  if (!formValues.description) {
-    errors.description = 'You must enter a description';
+  if (!formValues.content) {
+    errors.content = 'You must enter content';
   }
 
   return errors;
