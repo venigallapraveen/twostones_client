@@ -71,7 +71,7 @@ export const createStream = formValues => async (dispatch, getState) => {
   console.log('user id', userId);
   const response = await api.post(`/feed/post/${userId}`, formValues);
 
-  dispatch({ type: CREATE_STREAM, payload: response.data });
+  dispatch({ type: CREATE_STREAM, payload: response.data.post });
   history.push('/');
 };
 
@@ -81,10 +81,10 @@ export const fetchStreams = () => async dispatch => {
   dispatch({ type: FETCH_STREAMS, payload: response.data.posts });
 };
 
-export const fetchStream = id => async dispatch => {
-  const response = await streams.get(`/streams/${id}`);
+export const fetchStream = postId => async dispatch => {
+  const response = await api.get(`/feed/post/${postId}`);
 
-  dispatch({ type: FETCH_STREAM, payload: response.data });
+  dispatch({ type: FETCH_STREAM, payload: response.data.post });
 };
 
 export const editStream = (id, formValues) => async dispatch => {
