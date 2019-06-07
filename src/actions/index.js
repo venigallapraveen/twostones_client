@@ -5,6 +5,7 @@ import {
   SIGN_OUT,
   SIGN_UP,
   SEARCH,
+  CLEAR_ITEMS,
   CREATE_STREAM,
   FETCH_STREAMS,
   FETCH_STREAM,
@@ -24,16 +25,7 @@ export const signIn = formValues => async (dispatch, getState) => {
   history.push('/');
 };
 
-export const search = formValues => async (dispatch, getState) => {
 
-  const response = await api.post('/feed/search', { ...formValues });
-
-
-  dispatch({ type: SEARCH, payload: response.data.posts });
-
-
-  history.push('/streams/search');
-};
 
 
 export const signUp = formValues => async (dispatch, getState) => {
@@ -73,6 +65,29 @@ export const signOut = () => async (dispatch) => {
     console.log(err)
   }
 }
+
+
+export const search = formValues => async (dispatch) => {
+
+  const response = await api.post('/feed/search', { ...formValues });
+
+
+  dispatch({ type: SEARCH, payload: response.data.posts });
+
+
+  history.push('/streams/search');
+};
+
+
+export const clear_search_items = () => {
+
+  return {
+        type: CLEAR_ITEMS
+
+      };
+
+};
+
 
 
 

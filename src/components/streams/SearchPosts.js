@@ -1,14 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
-import {search} from "../../actions";
+import {search, clear_search_items} from "../../actions";
 import SearchForm from "./SearchForm";
 import { Link } from "react-router-dom";
 
 class SearchPosts extends React.Component {
 
+
+
     componentDidUpdate(prevProps) {
 
-        if(this.props.searchTerm !== prevProps.searchTerm){
+        if(this.props.streams !== prevProps.streams){
+
 
             this.renderSearchResults();
         }
@@ -17,6 +20,7 @@ class SearchPosts extends React.Component {
 
 
     onSubmit = formValues => {
+        this.props.clear_search_items();
     this.props.search(formValues);
   };
 
@@ -89,14 +93,13 @@ const mapStateToProps = state => {
     return {
         streams: Object.values(state.search),
         currentUserId: state.auth.userId,
-        isSignedIn: state.auth.isSignedIn,
-        searchTerm: state.search.searchTerm
+        isSignedIn: state.auth.isSignedIn
     };
 };
 
 export default connect(
     mapStateToProps,
-  { search }
+  { search, clear_search_items }
 )(SearchPosts);
 
 
