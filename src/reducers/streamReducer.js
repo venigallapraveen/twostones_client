@@ -14,7 +14,7 @@ export default (state = {}, action) => {
       // return { ...state, ...action.payload };
     case FETCH_STREAM:
       return { ...state, [action.payload._id]: action.payload };
-    case CREATE_STREAM:
+      case CREATE_STREAM:
       return { ...state, [action.payload._id]: action.payload };
     case EDIT_STREAM:
       return { ...state, [action.payload._id]: action.payload };

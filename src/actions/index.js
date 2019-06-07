@@ -4,6 +4,7 @@ import {
   SIGN_IN,
   SIGN_OUT,
   SIGN_UP,
+  SEARCH,
   CREATE_STREAM,
   FETCH_STREAMS,
   FETCH_STREAM,
@@ -21,6 +22,17 @@ export const signIn = formValues => async (dispatch, getState) => {
 
 
   history.push('/');
+};
+
+export const search = formValues => async (dispatch, getState) => {
+
+  const response = await api.post('/feed/search', { ...formValues });
+
+
+  dispatch({ type: SEARCH, payload: response.data.posts });
+
+
+  history.push('/streams/search');
 };
 
 

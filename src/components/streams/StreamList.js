@@ -8,10 +8,6 @@ class StreamList extends React.Component {
     this.props.fetchStreams();
   }
 
-  // module to show search bar
-    searchModulev1(){
-      console.log('search module v1');
-    }
 
   renderAdmin(stream) {
     if (stream.creator === this.props.currentUserId) {
@@ -61,10 +57,26 @@ class StreamList extends React.Component {
     }
   }
 
+    renderSearch() {
+
+            return (
+                <div style={{ textAlign: 'right' }}>
+                    <Link to="/streams/search" className="ui button primary">
+                        Search Posts
+                    </Link>
+                </div>
+            );
+
+    }
+
+
+
+
   render() {
     return (
       <div>
         <h2>Posts</h2>
+          {this.renderSearch()}
         <div className="ui celled list">{this.renderList()}</div>
         {this.renderCreate()}
       </div>
